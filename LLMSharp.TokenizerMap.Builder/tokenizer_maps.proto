@@ -1,0 +1,9 @@
+﻿syntax = "proto3";
+
+message TokenizerMaps {
+  map<int32, bytes> TextMap = 1;
+  map<string, int32> SpecialTokens = 2;
+  map<string, int32> RankMap = 3;
+  map<int32, bytes> InverseSpecialTokens = 4;
+  string RegexPattern = 5;
+}
