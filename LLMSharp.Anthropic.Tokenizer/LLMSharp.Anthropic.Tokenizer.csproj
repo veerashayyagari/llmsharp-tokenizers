@@ -1,10 +1,17 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netstandard2.0</TargetFramework>
-    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+    <TargetFramework>netstandard2.0</TargetFramework>    
     <EnforceCodeStyleInBuild>True</EnforceCodeStyleInBuild>
-    <AnalysisLevel>latest-recommended</AnalysisLevel>
+    <AnalysisLevel>latest-recommended</AnalysisLevel>    
+    <Authors>veerash-ayyagari</Authors>
+	<Company>veerash-ayyagari</Company>
+	<PackageTags>anthropic, tokenizer, claude, dotnet, tiktoken</PackageTags>
+	<RepositoryUrl>https://github.com/veerashayyagari/llmsharp-tokenizers</RepositoryUrl>
+	<Description>BPE Tokenizer Unofficial Implementation for Anthropic Claude</Description>
+	<Title>Anthropic Claude Tokenizer</Title>
+	<PackageProjectUrl>https://github.com/veerashayyagari/llmsharp-tokenizers</PackageProjectUrl>
+	<PackageReadmeFile>README.md</PackageReadmeFile>
   </PropertyGroup>
 
   <ItemGroup>    
@@ -16,7 +23,18 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Include="..\README.md">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Google.Protobuf" Version="3.24.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\LLMSharp.Tokenizers.Shared\LLMSharp.Tokenizers.Shared.csproj" />
   </ItemGroup>
 
 </Project>

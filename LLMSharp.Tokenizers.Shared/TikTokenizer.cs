@@ -46,13 +46,19 @@ namespace LLMSharp.Tokenizers.Shared
         /// <exception cref="Exception"></exception>
         public IReadOnlyList<int> Encode(
             string text,
-            IEnumerable<string> allowedSpecial = null,
-            IEnumerable<string> disallowedSpecial = null
+            HashSet<string> allowedSpecial = null,
+            HashSet<string> disallowedSpecial = null
             )
         {
-            HashSet<string> allowedSpecialSet = new HashSet<string>(allowedSpecial ?? tokenMaps.SpecialTokens.Keys);
-            HashSet<string> disallowedSpecialSet = new HashSet<string>();
-            if(disallowedSpecial != null)
+            HashSet<string> allowedSpecialSet = new HashSet<string>(tokenMaps.SpecialTokens.Keys);
+            HashSet<string> disallowedSpecialSet = disallowedSpecial;
+
+            if (allowedSpecial != null)
+            {
+                allowedSpecialSet.IntersectWith(allowedSpecial);
+            }
+            
+            if(disallowedSpecialSet == null)
             {
                 disallowedSpecialSet = new HashSet<string>(tokenMaps.SpecialTokens.Keys.Where(k => !allowedSpecialSet.Contains(k)));
             }
@@ -128,7 +134,7 @@ namespace LLMSharp.Tokenizers.Shared
         /// Useful for visualizing tokenization
         /// </summary>
         /// <param name="tokens"></param>
-        /// <returns></returns>
+        /// <returns>decoded string using the tokens</returns>
         public string Decode(IEnumerable<int> tokens)
         {
             List<byte> result = new List<byte>();
