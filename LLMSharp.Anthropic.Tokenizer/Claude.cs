@@ -45,6 +45,21 @@ namespace LLMSharp.Anthropic.Tokenizer
         }
 
         /// <summary>
+        /// Counts number of byte pair encoded tokens for the given text input
+        /// Special tokens are artificial tokens used to unlock capabilities from a model,
+        /// such as fill-in-the-middle.So we want to be careful about accidentally encoding special
+        /// tokens, since they can be used to trick a model into doing something we don't want it to do.
+        /// This method uses the default implementation and throws an error if the text contains any valid special tokens.
+        /// For more granular control of encoding special tokens use 'EncodeWithSpecialTokens'
+        /// </summary>
+        /// <param name="text">text input for counting tokens using claude tokenizer</param>
+        /// <returns>number of tokens in the given text</returns>
+        public int CountTokens(string text)
+        {
+            return this.tokenizer.CountTokens(text, new HashSet<string>(), null);
+        }
+
+        /// <summary>
         /// Encodes a string into tokens using claude bpe ranks
         /// Special tokens are artificial tokens used to unlock capabilities from a model,
         /// such as fill-in-the-middle.So we want to be careful about accidentally encoding special
@@ -58,6 +73,28 @@ namespace LLMSharp.Anthropic.Tokenizer
         public IReadOnlyList<int> EncodeWithSpecialTokens(string text, IEnumerable<string> allowedSpecialTokens, IEnumerable<string> disallowedSpecialTokens)
         {            
             return this.tokenizer.Encode(
+                text,
+                (allowedSpecialTokens == null) ? null : new HashSet<string>(allowedSpecialTokens),
+                (disallowedSpecialTokens == null) ? null : new HashSet<string>(disallowedSpecialTokens));
+        }
+
+        /// <summary>
+        /// Counts number of byte pair encoded tokens for the given text input
+        /// Special tokens are artificial tokens used to unlock capabilities from a model,
+        /// such as fill-in-the-middle.So we want to be careful about accidentally encoding special
+        /// tokens, since they can be used to trick a model into doing something we don't want it to do.
+        /// 1. If the tokenizer needs to allow all special tokens : pass null for allowedSpecialTokens and disallowedSpecialTokens
+        /// 2. If the tokenizer needs to allow only a limited set of special tokens : use the allowedSpecialTokens for allowed and disallowedSpecialTokens for tokens to be disallowed
+        /// 3. allowedSpecialTokens and disallowedSpecialTokens should contain only valid supported tokens by the model
+        /// </summary>
+        /// <param name="text">text input for counting tokens using claude tokenizer</param>
+        /// <param name="allowedSpecial">special tokens that are allowed for tokenization. If null, all the special tokens supported by the model are allowed. If empty, none of the special tokens are allowed.</param>
+        /// <param name="disallowedSpecial">special tokens that should be disallowed for tokenization. If null, any special token that is not allowed will be considered disallowed.</param>
+        /// <returns>number of tokens for the given text</returns>
+        /// <exception cref="InvalidOperationException">thrown when any of the disallowed special tokens are found in the text</exception>
+        public int CountWithSpecialTokens(string text, IEnumerable<string> allowedSpecialTokens, IEnumerable<string> disallowedSpecialTokens)
+        {
+            return this.tokenizer.CountTokens(
                 text,
                 (allowedSpecialTokens == null) ? null : new HashSet<string>(allowedSpecialTokens),
                 (disallowedSpecialTokens == null) ? null : new HashSet<string>(disallowedSpecialTokens));
