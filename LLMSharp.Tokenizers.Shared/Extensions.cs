@@ -18,17 +18,7 @@ namespace LLMSharp.Tokenizers.Shared
         /// <returns>returns the string with special characters escaped</returns>
         internal static string EscapeRegex(this string input)
         {
-            var specialChars = new HashSet<char> { '\\', '^', '$', '*', '+', '?', '.', '(', ')', '[', ']', '{', '}' };
-            var result = new StringBuilder(input.Length);
-            foreach (var ch in input)
-            {
-                if (specialChars.Contains(ch))
-                {
-                    result.Append('\\');
-                }
-                result.Append(ch);
-            }
-            return result.ToString();
+            return Regex.Replace(input, @"[\\^$*+?.()|[\]{}]", "\\$&");
         }
 
 

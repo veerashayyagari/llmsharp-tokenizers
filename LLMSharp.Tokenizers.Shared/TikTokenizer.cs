@@ -43,7 +43,7 @@ namespace LLMSharp.Tokenizers.Shared
         /// <param name="allowedSpecial"></param>
         /// <param name="disallowedSpecial"></param>
         /// <returns></returns>
-        /// <exception cref="Exception"></exception>
+        /// <exception cref="InvalidOperationException"></exception>
         public IReadOnlyList<int> Encode(
             string text,
             HashSet<string> allowedSpecial = null,
@@ -73,7 +73,7 @@ namespace LLMSharp.Tokenizers.Shared
 
                 if (disallowedSpecialMatch.Success)
                 {
-                    throw new Exception($"The text contains a special token that is not allowed: {disallowedSpecialMatch.Value}");
+                    throw new InvalidOperationException($"The text contains a special token that is not allowed: {disallowedSpecialMatch.Value}");
                 }
             }
 

@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace LLMSharp.Tokenizers.Shared.Tests
+﻿namespace LLMSharp.Tokenizers.Tests
 {
     internal class TestData
     {
@@ -93,8 +87,9 @@ Not at this time.";
         internal const string AccentCharacters = "café naïve résumé fiancée";
         internal const string HtmlCharacters = "<html><body><h1>Title</h1></body></html>";
         internal const string AnthropicClaudeSpecialCharacters = "<META_START>some data<META_END>";
+        internal const string GptChatCompletionSpecialCharacters = "some <|fim_suffix|> data <|endoftext|>";
 
-        internal static Dictionary<string, string> Strings = new()
+        internal static Dictionary<string, string> ClaudeStrings = new()
         {
             {nameof(HelloWorld), HelloWorld},
             {nameof(WhitespaceCharacters), WhitespaceCharacters},
@@ -102,8 +97,18 @@ Not at this time.";
             {nameof(Emojis), Emojis},
             {nameof(Math), Math},
             {nameof(AccentCharacters), AccentCharacters},
-            {nameof(HtmlCharacters), HtmlCharacters},
-            {nameof(AnthropicClaudeSpecialCharacters), AnthropicClaudeSpecialCharacters},
+            {nameof(HtmlCharacters), HtmlCharacters},            
+        };
+
+        internal static Dictionary<string, string> GptChatCompletionsStrings = new()
+        {
+            {nameof(HelloWorld), HelloWorld},
+            {nameof(WhitespaceCharacters), WhitespaceCharacters},
+            {nameof(UnicodeCharacters), UnicodeCharacters},
+            {nameof(Emojis), Emojis},
+            {nameof(Math), Math},
+            {nameof(AccentCharacters), AccentCharacters},
+            {nameof(HtmlCharacters), HtmlCharacters},            
         };
     }
 }

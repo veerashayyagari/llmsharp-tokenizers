@@ -11,7 +11,7 @@ namespace LLMSharp.TokenizerMap.Builder
         private readonly string claudeSerializedFilePath = "claude-token-maps.bin";
 
         private readonly string gptJsonFilePath = "cl100k_base.json";
-        private readonly string gptSerializedFilePath = "gptchat-models-token-maps.bin";
+        private readonly string gptSerializedFilePath = "gpt-chatcompletions-token-maps.bin";
 
         private readonly TokenizerMapFactory factory;
         
