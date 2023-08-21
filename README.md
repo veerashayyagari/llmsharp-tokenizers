@@ -7,7 +7,13 @@
 
 ## Usage
 
-Install the appropriate nuget package
+- Install the latest version of nuget package
+
+```
+dotnet add package LLMSharp.Anthropic.Tokenizer
+
+dotnet add package LLMSharp.OpenAi.Tokenizer
+```
 
 - Create an instance of the tokenizer
 
