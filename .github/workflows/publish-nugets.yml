@@ -1,3 +1,5 @@
+name: "Publish Nugets"
+
 on:
   push:
     tags:
