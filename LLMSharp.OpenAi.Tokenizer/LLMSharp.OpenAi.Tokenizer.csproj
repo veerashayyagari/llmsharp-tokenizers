@@ -1,7 +1,19 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
+    <PackageId>LLMSharp.OpenAi.Tokenizer</PackageId>
     <TargetFramework>netstandard2.0</TargetFramework>
+    <EnforceCodeStyleInBuild>True</EnforceCodeStyleInBuild>
+    <AnalysisLevel>latest-recommended</AnalysisLevel>    
+    <Authors>veerash-ayyagari</Authors>
+    <Company>veerash-ayyagari</Company>
+    <PackageTags>openai, gpt 3.5, gpt 4, tokenizer, dotnet, tiktoken</PackageTags>
+    <RepositoryUrl>https://github.com/veerashayyagari/llmsharp-tokenizers</RepositoryUrl>
+    <Description>Open AI Chat Completion Models (GPT 3.5/GPT 4) BPE Tokenizer unofficial implementation</Description>
+    <Title>OpenAI Chat Completion Models BPE Tokenizer</Title>
+    <PackageProjectUrl>https://github.com/veerashayyagari/llmsharp-tokenizers</PackageProjectUrl>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
   </PropertyGroup>
 
   <ItemGroup>

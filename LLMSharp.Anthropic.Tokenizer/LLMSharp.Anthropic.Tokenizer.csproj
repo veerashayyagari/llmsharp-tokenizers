@@ -1,17 +1,19 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
+    <PackageId>LLMSharp.Anthropic.Tokenizer</PackageId>
     <TargetFramework>netstandard2.0</TargetFramework>    
     <EnforceCodeStyleInBuild>True</EnforceCodeStyleInBuild>
     <AnalysisLevel>latest-recommended</AnalysisLevel>    
     <Authors>veerash-ayyagari</Authors>
-	<Company>veerash-ayyagari</Company>
-	<PackageTags>anthropic, tokenizer, claude, dotnet, tiktoken</PackageTags>
-	<RepositoryUrl>https://github.com/veerashayyagari/llmsharp-tokenizers</RepositoryUrl>
-	<Description>BPE Tokenizer Unofficial Implementation for Anthropic Claude</Description>
-	<Title>Anthropic Claude Tokenizer</Title>
-	<PackageProjectUrl>https://github.com/veerashayyagari/llmsharp-tokenizers</PackageProjectUrl>
-	<PackageReadmeFile>README.md</PackageReadmeFile>
+    <Company>veerash-ayyagari</Company>
+    <PackageTags>anthropic, tokenizer, claude, dotnet, tiktoken</PackageTags>
+    <RepositoryUrl>https://github.com/veerashayyagari/llmsharp-tokenizers</RepositoryUrl>
+    <Description>Anthropic Claude BPE Tokenizer unofficial implementation</Description>
+    <Title>Anthropic Claude Tokenizer</Title>
+    <PackageProjectUrl>https://github.com/veerashayyagari/llmsharp-tokenizers</PackageProjectUrl>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
   </PropertyGroup>
 
   <ItemGroup>    
