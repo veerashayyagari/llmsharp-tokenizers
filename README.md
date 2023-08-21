@@ -1,6 +1,6 @@
 # LLMSharp Tokenizers
 
-[![build and test](https://github.com/veerashayyagari/llmsharp-tokenizers/actions/workflows/build-and-test.yml/badge.svg)](https://github.com/veerashayyagari/llmsharp-tokenizers/actions/workflows/build-and-test.yml) [![CodeQL](https://github.com/veerashayyagari/llmsharp-tokenizers/actions/workflows/cql.yml/badge.svg)](https://github.com/veerashayyagari/llmsharp-tokenizers/actions/workflows/cql.yml)
+[![build and test](https://github.com/veerashayyagari/llmsharp-tokenizers/actions/workflows/build-and-test.yml/badge.svg)](https://github.com/veerashayyagari/llmsharp-tokenizers/actions/workflows/build-and-test.yml) [![CodeQL](https://github.com/veerashayyagari/llmsharp-tokenizers/actions/workflows/codeql.yml/badge.svg)](https://github.com/veerashayyagari/llmsharp-tokenizers/actions/workflows/codeql.yml)
 
 - **LLMSharp.Anthropic.Tokenizer** : Unofficial implementation of tokenizer for Anthropic claude in dotnet. Install this nuget package for Encoding using Claude Tokenizer.
 - **LLMSharp.OpenAi.Tokenizer** : Unofficial implementation of tokenizer for GPT-3.5/GPT-4 models in dotnet. Install this nuget package for Encoding using GPT Chat Completions Model Tokenizer.
