@@ -1,0 +1,45 @@
+on:
+  push:
+    tags:
+      - "v[0-9]+.[0-9]+.[0-9]+"
+      - "v-anthropic[0-9]+.[0-9]+.[0-9]+"
+      - "v-openai[0-9]+.[0-9]+.[0-9]+"
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+      - name: Verify commit exists in origin/main
+        run: git branch --remote --contains | grep origin/main
+      - name: Extract Tag Info
+        run: |
+          TAG=${{ github.ref }}
+          echo 'tag : $TAG'
+          PATTERN="^(v(?:-anthropic|-openai)?)((?:[0-9]+\.){2}[0-9]+)$"
+          if [[ $TAG =~ $PATTERN ]]; then
+              echo "PREFIX=${BASH_REMATCH[1]}" >> $GITHUB_ENV
+              echo "VERSION=${BASH_REMATCH[2]}" >> $GITHUB_ENV
+          else
+              echo "Failed to extract tag info!"
+              exit 1
+          fi
+      - name: echo tag info
+        run: |
+          echo "VERSION:$VERSION"
+          echo "PREFIX:$PREFIX"
+      - name: Build Anthropic Tokenizer
+        if: env.PREFIX == 'v' || env.PREFIX == 'v-anthropic'
+        run: dotnet build LLMSharp.Anthropic.Tokenizer --configuration Release /p:Version=${VERSION}
+      - name: Test
+        run: dotnet test --configuration Release /p:Version=${VERSION} --no-build
+      - name: Pack
+        if: env.PREFIX == 'v' || env.PREFIX == 'v-anthropic'
+        run: dotnet pack LLMSharp.Anthropic.Tokenizer --configuration Release /p:Version=${VERSION} --no-build --output .
+    #   - name: Push
+    #     run: dotnet nuget push NuGet.Workflow.${VERSION}.nupkg --source 'https://api.nuget.org/v3/index.json' --api-key ${NUGET_API_KEY}
+    #     env:
+    #       NUGET_API_KEY: ${{ secrets.NUGET_API_KEY }}
