@@ -39,10 +39,10 @@ jobs:
         run: dotnet test --configuration Release --no-build
       - name: Pack Anthropic Tokenizer
         if: env.PREFIX == 'v' || env.PREFIX == 'v-anthropic'
-        run: dotnet pack LLMSharp.Anthropic.Tokenizer --configuration Release --output . -p:Version=${Version}
+        run: dotnet pack LLMSharp.Anthropic.Tokenizer --configuration Release --output . -p:Version=${VERSION}
       - name: Pack OpenAi Tokenizer
         if: env.PREFIX == 'v' || env.PREFIX == 'v-openai'
-        run: dotnet pack LLMSharp.OpenAi.Tokenizer --configuration Release --output . -p:Version=${Version}
+        run: dotnet pack LLMSharp.OpenAi.Tokenizer --configuration Release --output . -p:Version=${VERSION}
       - name: Push
         run: dotnet nuget push LLMSharp.*.Tokenizer.${VERSION}.nupkg --source 'https://api.nuget.org/v3/index.json' --api-key ${NUGET_API_KEY}
         env:
