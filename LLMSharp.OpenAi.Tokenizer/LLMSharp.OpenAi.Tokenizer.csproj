@@ -1,0 +1,19 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="gpt-chatcompletions-token-maps.bin" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="gpt-chatcompletions-token-maps.bin" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\LLMSharp.Tokenizers.Shared\LLMSharp.Tokenizers.Shared.csproj" />
+  </ItemGroup>
+
+</Project>
