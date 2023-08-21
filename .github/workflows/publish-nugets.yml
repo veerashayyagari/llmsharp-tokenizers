@@ -35,9 +35,9 @@ jobs:
           echo "PREFIX:$PREFIX"
       - name: Build Anthropic Tokenizer
         if: env.PREFIX == 'v' || env.PREFIX == 'v-anthropic'
-        run: dotnet build LLMSharp.Anthropic.Tokenizer --configuration Release /p:Version=${VERSION}
+        run: dotnet build --configuration Release
       - name: Test
-        run: dotnet test --configuration Release /p:Version=${VERSION} --no-build
+        run: dotnet test --configuration Release --no-build
       - name: Pack
         if: env.PREFIX == 'v' || env.PREFIX == 'v-anthropic'
         run: dotnet pack LLMSharp.Anthropic.Tokenizer --configuration Release /p:Version=${VERSION} --no-build --output .
