@@ -33,14 +33,16 @@ jobs:
         run: |
           echo "VERSION:$VERSION"
           echo "PREFIX:$PREFIX"
-      - name: Build Anthropic Tokenizer
-        if: env.PREFIX == 'v' || env.PREFIX == 'v-anthropic'
+      - name: Build Tokenizers
         run: dotnet build --configuration Release
       - name: Test
         run: dotnet test --configuration Release --no-build
-      - name: Pack
+      - name: Pack Anthropic Tokenizer
         if: env.PREFIX == 'v' || env.PREFIX == 'v-anthropic'
         run: dotnet pack LLMSharp.Anthropic.Tokenizer --configuration Release /p:Version=${VERSION} --no-build --output .
+      - name: Pack OpenAi Tokenizer
+        if: env.PREFIX == 'v' || env.PREFIX == 'v-openai'
+        run: dotnet pack LLMSharp.OpenAi.Tokenizer --configuration Release /p:Version=${VERSION} --no-build --output .
     #   - name: Push
     #     run: dotnet nuget push NuGet.Workflow.${VERSION}.nupkg --source 'https://api.nuget.org/v3/index.json' --api-key ${NUGET_API_KEY}
     #     env:
