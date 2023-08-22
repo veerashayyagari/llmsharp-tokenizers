@@ -5,9 +5,9 @@ namespace LLMSharp.Tokenizers.Tests
     [TestClass]
     public class OpenAiChatCmplTokenizerTests
     {
-        private readonly ChatCompletions chatCompletionsTokenizer;
+        private readonly OpenAiChatCompletionsTokenizer chatCompletionsTokenizer;
 
-        public OpenAiChatCmplTokenizerTests() { this.chatCompletionsTokenizer = new ChatCompletions(); }
+        public OpenAiChatCmplTokenizerTests() { this.chatCompletionsTokenizer = new OpenAiChatCompletionsTokenizer(); }
 
         [TestMethod]
         public void TestEncoding()
