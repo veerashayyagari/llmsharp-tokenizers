@@ -1,19 +1,61 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
-    <TargetFramework>netstandard2.0</TargetFramework>
-  </PropertyGroup>
+	<PropertyGroup>
+		<PackageId>LLMSharp.OpenAi.Tokenizer</PackageId>
+		<TargetFramework>netstandard2.0</TargetFramework>
+		<EnforceCodeStyleInBuild>True</EnforceCodeStyleInBuild>
+		<AnalysisLevel>latest-recommended</AnalysisLevel>
+		<Authors>Veerash Ayyagari</Authors>
+		<Company>veerash-ayyagari</Company>
+		<PackageTags>openai, gpt 3.5, gpt 4, tokenizer, dotnet, tiktoken</PackageTags>
+		<RepositoryUrl>https://github.com/veerashayyagari/llmsharp-tokenizers</RepositoryUrl>
+		<Description>Open AI Chat Completion Models (GPT 3.5/GPT 4) BPE Tokenizer unofficial implementation</Description>
+		<Title>OpenAI Chat Completion Models BPE Tokenizer</Title>
+		<PackageProjectUrl>https://github.com/veerashayyagari/llmsharp-tokenizers</PackageProjectUrl>
+		<PackageLicenseExpression>MIT</PackageLicenseExpression>
+		<PackageReadmeFile>README.md</PackageReadmeFile>
+	</PropertyGroup>
 
-  <ItemGroup>
-    <None Remove="gpt-chatcompletions-token-maps.bin" />
-  </ItemGroup>
+	<ItemGroup>
+		<None Remove="gpt-chatcompletions-token-maps.bin" />
+	</ItemGroup>
 
-  <ItemGroup>
-    <EmbeddedResource Include="gpt-chatcompletions-token-maps.bin" />
-  </ItemGroup>
+	<ItemGroup>
+		<EmbeddedResource Include="gpt-chatcompletions-token-maps.bin" />
+	</ItemGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\LLMSharp.Tokenizers.Shared\LLMSharp.Tokenizers.Shared.csproj" />
-  </ItemGroup>
+	<ItemGroup>
+		<None Include="..\README.md">
+			<Pack>True</Pack>
+			<PackagePath>\</PackagePath>
+		</None>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <PackageReference Include="Google.Protobuf" Version="3.24.1" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\LLMSharp.Tokenizers.Shared\LLMSharp.Tokenizers.Shared.csproj" PrivateAssets="All" />
+	</ItemGroup>
+
+	<PropertyGroup>
+		<TargetsForTfmSpecificBuildOutput>$(TargetsForTfmSpecificBuildOutput);CopyProjectReferencesToPackage</TargetsForTfmSpecificBuildOutput>
+	</PropertyGroup>
+
+	<Target Name="CopyProjectReferencesToPackage" DependsOnTargets="BuildOnlySettings;ResolveReferences">
+		<ItemGroup>
+			<!-- Filter out unnecessary files -->
+			<_ReferenceCopyLocalPaths Include="@(ReferenceCopyLocalPaths-&gt;WithMetadataValue('ReferenceSourceTarget', 'ProjectReference')-&gt;WithMetadataValue('PrivateAssets', 'All'))" />
+		</ItemGroup>
+
+		<!-- Print batches for debug purposes -->
+		<Message Text="Batch for .nupkg: ReferenceCopyLocalPaths = @(_ReferenceCopyLocalPaths), ReferenceCopyLocalPaths.DestinationSubDirectory = %(_ReferenceCopyLocalPaths.DestinationSubDirectory) Filename = %(_ReferenceCopyLocalPaths.Filename) Extension = %(_ReferenceCopyLocalPaths.Extension)" Importance="High" Condition="'@(_ReferenceCopyLocalPaths)' != ''" />
+
+		<ItemGroup>
+			<!-- Add file to package with consideration of sub folder. If empty, the root folder is chosen. -->
+			<BuildOutputInPackage Include="@(_ReferenceCopyLocalPaths)" TargetPath="%(_ReferenceCopyLocalPaths.DestinationSubDirectory)" />
+		</ItemGroup>
+	</Target>
 
 </Project>

@@ -1,40 +1,61 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
-    <TargetFramework>netstandard2.0</TargetFramework>    
-    <EnforceCodeStyleInBuild>True</EnforceCodeStyleInBuild>
-    <AnalysisLevel>latest-recommended</AnalysisLevel>    
-    <Authors>veerash-ayyagari</Authors>
-	<Company>veerash-ayyagari</Company>
-	<PackageTags>anthropic, tokenizer, claude, dotnet, tiktoken</PackageTags>
-	<RepositoryUrl>https://github.com/veerashayyagari/llmsharp-tokenizers</RepositoryUrl>
-	<Description>BPE Tokenizer Unofficial Implementation for Anthropic Claude</Description>
-	<Title>Anthropic Claude Tokenizer</Title>
-	<PackageProjectUrl>https://github.com/veerashayyagari/llmsharp-tokenizers</PackageProjectUrl>
-	<PackageReadmeFile>README.md</PackageReadmeFile>
-  </PropertyGroup>
+	<PropertyGroup>
+		<PackageId>LLMSharp.Anthropic.Tokenizer</PackageId>
+		<TargetFramework>netstandard2.0</TargetFramework>
+		<EnforceCodeStyleInBuild>True</EnforceCodeStyleInBuild>
+		<AnalysisLevel>latest-recommended</AnalysisLevel>
+		<Authors>Veerash Ayyagari</Authors>
+		<Company>veerash-ayyagari</Company>
+		<PackageTags>anthropic, tokenizer, claude, dotnet, tiktoken</PackageTags>
+		<RepositoryUrl>https://github.com/veerashayyagari/llmsharp-tokenizers</RepositoryUrl>
+		<Description>Anthropic Claude BPE Tokenizer unofficial implementation</Description>
+		<Title>Anthropic Claude Tokenizer</Title>
+		<PackageProjectUrl>https://github.com/veerashayyagari/llmsharp-tokenizers</PackageProjectUrl>
+		<PackageLicenseExpression>MIT</PackageLicenseExpression>
+		<PackageReadmeFile>README.md</PackageReadmeFile>
+	</PropertyGroup>
 
-  <ItemGroup>    
-    <None Remove="claude-token-maps.bin" />
-  </ItemGroup>
+	<ItemGroup>
+		<None Remove="claude-token-maps.bin" />
+	</ItemGroup>
 
-  <ItemGroup>
-    <EmbeddedResource Include="claude-token-maps.bin" />
-  </ItemGroup>
+	<ItemGroup>
+		<EmbeddedResource Include="claude-token-maps.bin" />
+	</ItemGroup>
 
-  <ItemGroup>
-    <None Include="..\README.md">
-      <Pack>True</Pack>
-      <PackagePath>\</PackagePath>
-    </None>
-  </ItemGroup>
+	<ItemGroup>
+		<None Include="..\README.md">
+			<Pack>True</Pack>
+			<PackagePath>\</PackagePath>
+		</None>
+	</ItemGroup>
 
-  <ItemGroup>
-    <PackageReference Include="Google.Protobuf" Version="3.24.0" />
-  </ItemGroup>
+	<ItemGroup>
+		<PackageReference Include="Google.Protobuf" Version="3.24.1" />
+	</ItemGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\LLMSharp.Tokenizers.Shared\LLMSharp.Tokenizers.Shared.csproj" />
-  </ItemGroup>
+	<ItemGroup>
+		<ProjectReference Include="..\LLMSharp.Tokenizers.Shared\LLMSharp.Tokenizers.Shared.csproj" PrivateAssets="All" />
+	</ItemGroup>
+
+	<PropertyGroup>
+		<TargetsForTfmSpecificBuildOutput>$(TargetsForTfmSpecificBuildOutput);CopyProjectReferencesToPackage</TargetsForTfmSpecificBuildOutput>
+	</PropertyGroup>
+
+	<Target Name="CopyProjectReferencesToPackage" DependsOnTargets="BuildOnlySettings;ResolveReferences">
+		<ItemGroup>
+			<!-- Filter out unnecessary files -->
+			<_ReferenceCopyLocalPaths Include="@(ReferenceCopyLocalPaths->WithMetadataValue('ReferenceSourceTarget', 'ProjectReference')->WithMetadataValue('PrivateAssets', 'All'))"/>
+		</ItemGroup>
+
+		<!-- Print batches for debug purposes -->
+		<Message Text="Batch for .nupkg: ReferenceCopyLocalPaths = @(_ReferenceCopyLocalPaths), ReferenceCopyLocalPaths.DestinationSubDirectory = %(_ReferenceCopyLocalPaths.DestinationSubDirectory) Filename = %(_ReferenceCopyLocalPaths.Filename) Extension = %(_ReferenceCopyLocalPaths.Extension)" Importance="High" Condition="'@(_ReferenceCopyLocalPaths)' != ''" />
+
+		<ItemGroup>
+			<!-- Add file to package with consideration of sub folder. If empty, the root folder is chosen. -->
+			<BuildOutputInPackage Include="@(_ReferenceCopyLocalPaths)" TargetPath="%(_ReferenceCopyLocalPaths.DestinationSubDirectory)"/>
+		</ItemGroup>
+	</Target>
 
 </Project>
