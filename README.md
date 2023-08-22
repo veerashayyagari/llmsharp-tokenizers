@@ -21,13 +21,13 @@ dotnet add package LLMSharp.OpenAi.Tokenizer
 // Claude Tokenizer
 using LLMSharp.Anthropic.Tokenizer;
 
-var tokenizer = new Claude();
+var tokenizer = new ClaudeTokenizer();
 
 
 // OpenAi ChatCompletion Models Tokenizer
 using LLMSharp.OpenAi.Tokenizer;
 
-var tokenizer = new ChatCompletions();
+var tokenizer = new OpenAiChatCompletionsTokenizer();
 ```
 
 - **Encode** : tokenizes a given text, this is the default implementation that throws an exception if the text contains any special tokens

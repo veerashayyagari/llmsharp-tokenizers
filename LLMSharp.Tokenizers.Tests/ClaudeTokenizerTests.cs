@@ -5,9 +5,9 @@ namespace LLMSharp.Tokenizers.Tests
     [TestClass]
     public class ClaudeTokenizerTests
     {
-        private readonly Claude claudeTokenizer;
+        private readonly ClaudeTokenizer claudeTokenizer;
 
-        public ClaudeTokenizerTests() { this.claudeTokenizer = new Claude(); }
+        public ClaudeTokenizerTests() { this.claudeTokenizer = new ClaudeTokenizer(); }
 
         [TestMethod]
         public void TestEncoding()
