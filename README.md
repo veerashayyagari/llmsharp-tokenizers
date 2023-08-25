@@ -78,7 +78,7 @@ Encoding and CountTokens for 4200 tokens (~16 KB) of text
 ```
 
 BenchmarkDotNet v0.13.7, Ubuntu 22.04.3 LTS (Jammy Jellyfish)
-Intel Core i7-9700K CPU 3.60GHz (Coffee Lake), 1 CPU, 8 logical and 8 physical cores
+Intel Xeon Platinum 8370C CPU 2.80GHz, 1 CPU, 1 logical core and 1 physical core
 .NET SDK 7.0.110
   [Host]   : .NET 7.0.10 (7.0.1023.36801), X64 RyuJIT AVX2
   .NET 6.0 : .NET 6.0.21 (6.0.2123.36801), X64 RyuJIT AVX2
@@ -88,17 +88,17 @@ Intel Core i7-9700K CPU 3.60GHz (Coffee Lake), 1 CPU, 8 logical and 8 physical c
 ```
 |                                    Method |      Job |  Runtime |       StringToEncode |     Mean |
 |------------------------------------------ |--------- |--------- |--------------------- |---------:|
-|      OpenAiChatCompletionsTokenizerEncode | .NET 6.0 | .NET 6.0 | Con(...)e.\n [16926] | 1.419 ms |
-|      OpenAiChatCompletionsTokenizerEncode | .NET 7.0 | .NET 7.0 | Con(...)e.\n [16926] | 1.370 ms |
+|      OpenAiChatCompletionsTokenizerEncode | .NET 6.0 | .NET 6.0 | Con(...)e.\n [16926] | 1.328 ms |
+|      OpenAiChatCompletionsTokenizerEncode | .NET 7.0 | .NET 7.0 | Con(...)e.\n [16926] | 1.239 ms |
 |                                           |          |          |                      |          |
-| OpenAiChatCompletionsTokenizerCountTokens | .NET 6.0 | .NET 6.0 | Con(...)e.\n [16926] | 1.444 ms |
-| OpenAiChatCompletionsTokenizerCountTokens | .NET 7.0 | .NET 7.0 | Con(...)e.\n [16926] | 1.326 ms |
+| OpenAiChatCompletionsTokenizerCountTokens | .NET 6.0 | .NET 6.0 | Con(...)e.\n [16926] | 1.274 ms |
+| OpenAiChatCompletionsTokenizerCountTokens | .NET 7.0 | .NET 7.0 | Con(...)e.\n [16926] | 1.142 ms |
 |                                           |          |          |                      |          |
-|                     ClaudeTokenizerEncode | .NET 6.0 | .NET 6.0 | Con(...)e.\n [16926] | 1.391 ms |
-|                     ClaudeTokenizerEncode | .NET 7.0 | .NET 7.0 | Con(...)e.\n [16926] | 1.327 ms |
+|                     ClaudeTokenizerEncode | .NET 6.0 | .NET 6.0 | Con(...)e.\n [16926] | 1.343 ms |
+|                     ClaudeTokenizerEncode | .NET 7.0 | .NET 7.0 | Con(...)e.\n [16926] | 1.188 ms |
 |                                           |          |          |                      |          |
-|                ClaudeTokenizerCountTokens | .NET 6.0 | .NET 6.0 | Con(...)e.\n [16926] | 1.409 ms |
-|                ClaudeTokenizerCountTokens | .NET 7.0 | .NET 7.0 | Con(...)e.\n [16926] | 1.279 ms |
+|                ClaudeTokenizerCountTokens | .NET 6.0 | .NET 6.0 | Con(...)e.\n [16926] | 1.270 ms |
+|                ClaudeTokenizerCountTokens | .NET 7.0 | .NET 7.0 | Con(...)e.\n [16926] | 1.160 ms |
 
 
 
@@ -143,14 +143,14 @@ Intel Core i7-9700K CPU 3.60GHz (Coffee Lake), 1 CPU, 8 logical and 8 physical c
 ```
 |                                    Method |      Job |  Runtime |        StringToEncode |     Mean |
 |------------------------------------------ |--------- |--------- |---------------------- |---------:|
-|      OpenAiChatCompletionsTokenizerEncode | .NET 6.0 | .NET 6.0 | Con(...).\r\n [17157] | 1.451 ms |
-|      OpenAiChatCompletionsTokenizerEncode | .NET 7.0 | .NET 7.0 | Con(...).\r\n [17157] | 1.406 ms |
+|      OpenAiChatCompletionsTokenizerEncode | .NET 6.0 | .NET 6.0 | Con(...).\r\n [17157] | 1.270 ms |
+|      OpenAiChatCompletionsTokenizerEncode | .NET 7.0 | .NET 7.0 | Con(...).\r\n [17157] | 1.226 ms |
 |                                           |          |          |                       |          |
-| OpenAiChatCompletionsTokenizerCountTokens | .NET 6.0 | .NET 6.0 | Con(...).\r\n [17157] | 1.347 ms |
-| OpenAiChatCompletionsTokenizerCountTokens | .NET 7.0 | .NET 7.0 | Con(...).\r\n [17157] | 1.313 ms |
+| OpenAiChatCompletionsTokenizerCountTokens | .NET 6.0 | .NET 6.0 | Con(...).\r\n [17157] | 1.212 ms |
+| OpenAiChatCompletionsTokenizerCountTokens | .NET 7.0 | .NET 7.0 | Con(...).\r\n [17157] | 1.138 ms |
 |                                           |          |          |                       |          |
-|                     ClaudeTokenizerEncode | .NET 6.0 | .NET 6.0 | Con(...).\r\n [17157] | 1.469 ms |
-|                     ClaudeTokenizerEncode | .NET 7.0 | .NET 7.0 | Con(...).\r\n [17157] | 1.286 ms |
+|                     ClaudeTokenizerEncode | .NET 6.0 | .NET 6.0 | Con(...).\r\n [17157] | 1.266 ms |
+|                     ClaudeTokenizerEncode | .NET 7.0 | .NET 7.0 | Con(...).\r\n [17157] | 1.174 ms |
 |                                           |          |          |                       |          |
-|                ClaudeTokenizerCountTokens | .NET 6.0 | .NET 6.0 | Con(...).\r\n [17157] | 1.441 ms |
-|                ClaudeTokenizerCountTokens | .NET 7.0 | .NET 7.0 | Con(...).\r\n [17157] | 1.289 ms |
+|                ClaudeTokenizerCountTokens | .NET 6.0 | .NET 6.0 | Con(...).\r\n [17157] | 1.242 ms |
+|                ClaudeTokenizerCountTokens | .NET 7.0 | .NET 7.0 | Con(...).\r\n [17157] | 1.156 ms |
