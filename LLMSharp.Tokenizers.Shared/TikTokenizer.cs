@@ -273,28 +273,18 @@ namespace LLMSharp.Tokenizers.Shared
         /// <param name="piece">bytestring used for counting tokens</param>
         /// <returns>count of tokens</returns>
         private int CountBytePairEncodeTokens(ByteString piece)
-        {
-            int count = 0;
+        {            
             if (piece.Length == 1)
             {
                 if (tokenMaps.RankMap.ContainsKey(piece.ToBase64()))
                 {
-                    count++;
+                    return 1;
                 }
-                return count;
+                
+                return 0;
             }
 
-            var bpm = BytePairMerge(piece);
-            foreach (var (start, end) in bpm)
-            {
-                var slice = Convert.ToBase64String(piece.Span.Slice(start, end - start).ToArray());
-                if (tokenMaps.RankMap.ContainsKey(slice))
-                {
-                    count++;
-                }
-            }
-
-            return count;
+            return BytePairMerge(piece).Count;            
         }       
 
         /// <summary>
