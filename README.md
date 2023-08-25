@@ -115,7 +115,8 @@ Apple M2, 1 CPU, 8 logical and 8 physical cores
 
 
 ```
-|                                    Method |      Job |  Runtime |       StringToEncode |       Mean |
+|                                    Method |      Job |  Runtime |       StringToEncode |     Mean   |
+|------------------------------------------ |--------- |--------- |--------------------- |-----------:|
 |      OpenAiChatCompletionsTokenizerEncode | .NET 6.0 | .NET 6.0 | Con(...)e.\n [16926] | 1,133.5 μs |
 |      OpenAiChatCompletionsTokenizerEncode | .NET 7.0 | .NET 7.0 | Con(...)e.\n [16926] |   738.2 μs |
 |                                           |          |          |                      |            |
