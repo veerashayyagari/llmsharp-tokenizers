@@ -5,8 +5,7 @@ using LLMSharp.OpenAi.Tokenizer;
 
 namespace Benchmarks
 {
-    [SimpleJob(RuntimeMoniker.Net70, baseline:true)]    
-    [MarkdownExporterAttribute.GitHub]
+    [SimpleJob(RuntimeMoniker.Net70, baseline:true)]
     [GroupBenchmarksBy(BenchmarkLogicalGroupRule.ByCategory)]
     [CategoriesColumn]
     [MemoryDiagnoser]
