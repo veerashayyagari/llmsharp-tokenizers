@@ -5,6 +5,9 @@
     <TargetFramework>net7.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
+    <SignAssembly>True</SignAssembly>
+    <AssemblyOriginatorKeyFile>..\llmsharp-tokenizers.snk</AssemblyOriginatorKeyFile>
+    <DelaySign>True</DelaySign>
   </PropertyGroup>
 
   <ItemGroup>
