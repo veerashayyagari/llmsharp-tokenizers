@@ -41,6 +41,9 @@
 
 	<PropertyGroup>
 		<TargetsForTfmSpecificBuildOutput>$(TargetsForTfmSpecificBuildOutput);CopyProjectReferencesToPackage</TargetsForTfmSpecificBuildOutput>
+		<SignAssembly>True</SignAssembly>
+		<AssemblyOriginatorKeyFile>..\llmsharp-tokenizers.snk</AssemblyOriginatorKeyFile>
+		<DelaySign>True</DelaySign>
 	</PropertyGroup>
 
 	<Target Name="CopyProjectReferencesToPackage" DependsOnTargets="BuildOnlySettings;ResolveReferences">
